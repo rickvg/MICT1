@@ -1,0 +1,21 @@
+Exercise for week 1:
+
+1. Investigate the provided binary data file "week1.data".
+
+2. Find the following strings:
+
+- Simple text: Zuyd
+- Double happiness: 囍
+- Pile of Poo: 💩
+- BONUS: My first name is somewhere in the file as well, using Base64-encoding!
+
+3. Make a small report describing:
+
+ - What you found
+ - Where you found it (locations)
+ - How you found it. What tools? Include source, screenshots, howto's, etc.
+
+Put the report in the /exercises/week1/yourgroupname directory in the repo and
+send it in as a Pull Request on Github.
+
+Good luck!
