@@ -18,7 +18,6 @@ def ReadChunk(f):
     intLchunk = f.read(intLength)
     intLchunk = unpack('>I', intLchunk)[0] #Read as Big Endian -> Unsigned Integer
     strType = f.read(intChunkType)
-    strType = str(strType)[2:len(str(strType))-1]
     strChunkData = f.read(intLchunk)
     intChecksum = f.read(intCRC)
     intChecksum = unpack('>I', intChecksum)[0] #Read as Big Endian -> Unsigned Integer
@@ -41,14 +40,14 @@ def PrintAnomalyCount(chunkType):
     for i in range(0,len(arrValues)):
         if arrValues[i][0] == chunkType:
             if arrValues[i][1] != intMostCommon and arrValues[i][1] != 0:
-                print("Found anomaly in lenghts of: " + arrValues[i][0])
+                print("Found anomaly in lenghts of: " + str(arrValues[i][0]))
                 print("Explanation: It differs from the most used chunk length " + str(intMostCommon))
                 print("Length found:" + str(arrValues[i][1]) +"\n")
 
 file = open('file2.mng', 'rb')
 
 magic_val = file.read(8)
-arrDefaultMNG = ["IDAT", "IEND", "IHDR", "MHDR", "MEND", "TERM", "tEXt","tIME", "FRAM", "LOOP"]
+arrDefaultMNG = [b"IDAT", b"IEND", b"IHDR", b"MHDR", b"MEND", b"TERM", b"tEXt",b"tIME", b"FRAM", b"LOOP"]
 
 #Read complete file until end
 blnEOF = False
