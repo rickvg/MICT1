@@ -1,3 +1,6 @@
+#Python version 3.4.3
+#By: Groep 4 - Rick van Gorp, Nursize Bilen, Joeri van Grimbergen
+
 import re
 import binascii
 
