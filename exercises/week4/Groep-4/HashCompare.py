@@ -6,7 +6,7 @@ import hashlib
 def CheckHash(line):
     try:
         arrHashes = []
-        if int(line.split(",")[4]) < 4096: #Size of file must be smaller than 4096 in order to be in RAM/Drive Slack
+        if int(line.split(",")[4]) < 4096 and int(line.split(",")[4]) > 2: #Size of file must be smaller than 4096 in order to be in RAM/Drive Slack. Size larger than two to prevent false positives.
             with open("DATAFILTERED", "rb") as newfile:
                 number = 1
                 number2 = 0
@@ -23,6 +23,8 @@ def CheckHash(line):
                 if arrHashes[i] in line.split(",")[1]:
                     print(line.split(",")[1])
                     print(arrHashes[i])
+                    print(newfile.tell()) #Print File position end
+                    print(newfile.tell()-int(line.split(",")[4])) #Print File position start
     except:
         print("Error in thread")
     #Done with thread
