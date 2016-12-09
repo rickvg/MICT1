@@ -76,7 +76,7 @@ for m in re.finditer(re.compile(re.escape(b"DATA")), content):
         p = p + 4
 f.close()
 
-#Save RGB data to image in format BGRA
+#Save RGBA data to image in format BGRA
 img = Image.fromstring('RGBA', imgSize, strImage, 'raw', 'BGRA')
 img.save("output.png")
                
