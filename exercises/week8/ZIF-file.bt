@@ -1,0 +1,55 @@
+//------------------------------------------------
+//--- 010 Editor v7.0 Binary Template
+//
+//      File: ZIF-file structure
+//   Authors: Rick van Gorp, Joeri van Grimbergen, Nursize Bilen
+//   Version: 
+//   Purpose: Structing the new ZIF file structure
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+LittleEndian();
+
+typedef struct{
+    char magicValue[4];
+    uint32 imageWidth;
+    uint32 imageHeight;
+    uint32 imageLength; //Length of file
+}Header;
+
+typedef struct{
+    uint32 argbColor <format=hex>;
+}COLOR;
+
+//Contains Image Data
+typedef struct{
+    char chunkType[4];
+    uint32 chunkLength; //Could possibly be chunk length? = 203264 (Verified chunkLength)
+    if (chunkLength > 0){
+        COLOR colors [chunkLength/4];
+    }
+}COLRHeader;
+
+//Contains indexes to locations of Image data within COLR, meaning this is the definition of the ACTUAL image.
+typedef struct{
+    char chunkType[4];
+    uint32 chunkLength;
+    if (chunkLength > 0){
+        byte chunkData[chunkLength]; 
+    }
+}DataChunk;
+
+typedef struct{
+    char chunkType[4];
+    uint32 chunkLength;
+}UnknownChunk;
+
+typedef struct{
+    uint32 Colors;
+}COLORS;
+
+Header header;
+COLRHeader colrheader;
+DataChunk datachunk;
